@@ -1,0 +1,13 @@
+body {
+    text-align: center;
+    vertical-align: top;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#videoId, #btnSearch {
+    display: inline-block;
+}
+
+#cat {
+    font-size: 1.8em;
+}
