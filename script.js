@@ -15,11 +15,11 @@ async function getVideoData(videoId, apiKey) {
 function printTags(videoId, apiKey) {
     getVideoData(videoId, apiKey).then(d => {
         console.log(d);
-        let tags = d.items[0].snippet.tags;
-        document.getElementById("image").src = d.items[0].snippet.thumbnails.high.url;
+        document.getElementById("image").src = d.items[0].snippet.thumbnails.medium.url;
         document.getElementById("heading").innerHTML = d.items[0].snippet.localized.title;
         document.getElementById("cat").innerHTML = getCategory(d);
-        document.getElementById("result-div").innerHTML = `<p>${tags.reduce((sum, curr) => sum += curr + ", ", "")}</p>`;
+        // let tags = d.items[0].snippet.tags;
+        // document.getElementById("result-div").innerHTML = `<p>${tags.reduce((sum, curr) => sum += curr + ", ", "")}</p>`;
     });
 }
 

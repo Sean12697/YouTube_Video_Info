@@ -1,13 +1,43 @@
 body {
     text-align: center;
     vertical-align: top;
+    color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-#videoId, #btnSearch {
-    display: inline-block;
+    background-image: url("face.png");
+    background-repeat: no-repeat;
+    background-position-x: center;
 }
 
 #cat {
-    font-size: 1.8em;
+    font-size: 1.2em;
+}
+
+input {
+    border: none;
+    border-radius: 25px;
+    padding: 20px;
+    margin: 10px;
+}
+
+img {
+    width: 100%;
+}
+
+#videoId, #btnSearch {
+    text-align: center;
+}
+
+#videoId {
+    background: white;
+}
+
+#btnSearch {
+    background: paleturquoise;
+}
+
+#buttons, #details {
+    display: inline-block;
+    max-width: 400px;
+    vertical-align: middle;
+    margin: 10px;
 }
