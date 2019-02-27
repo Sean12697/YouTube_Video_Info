@@ -15,7 +15,8 @@ async function getVideoData(videoId, apiKey) {
 function printTags(videoId, apiKey) {
     getVideoData(videoId, apiKey).then(d => {
         console.log(d);
-        document.getElementById("image").src = d.items[0].snippet.thumbnails.medium.url;
+        // document.getElementById("image").src = d.items[0].snippet.thumbnails.medium.url;
+        document.getElementById("video").src = `https://www.youtube.com/embed/${d.items[0].id}`;
         document.getElementById("heading").innerHTML = d.items[0].snippet.localized.title;
         document.getElementById("cat").innerHTML = getCategory(d);
         // let tags = d.items[0].snippet.tags;
