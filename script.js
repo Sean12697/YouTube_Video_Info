@@ -15,18 +15,53 @@ async function getVideoData(videoId, apiKey) {
 function printTags(videoId, apiKey) {
     getVideoData(videoId, apiKey).then(d => {
         console.log(d);
-        // document.getElementById("image").src = d.items[0].snippet.thumbnails.medium.url;
-        document.getElementById("video").src = `https://www.youtube.com/embed/${d.items[0].id}`;
+        document.getElementById("image").src = d.items[0].snippet.thumbnails.medium.url;
+        // document.getElementById("video").src = `https://www.youtube.com/embed/${d.items[0].id}`;
         document.getElementById("heading").innerHTML = d.items[0].snippet.localized.title;
         document.getElementById("cat").innerHTML = getCategory(d);
         // let tags = d.items[0].snippet.tags;
         // document.getElementById("result-div").innerHTML = `<p>${tags.reduce((sum, curr) => sum += curr + ", ", "")}</p>`;
+        getVideoData(getSuggestedId(getCategory(d), "Good"), apiKey).then(s => {
+            console.log(s);
+            document.getElementById("suggestedImage").src = s.items[0].snippet.thumbnails.medium.url;
+            // document.getElementById("suggestedVideo").src = `https://www.youtube.com/embed/${s.items[0].id}`;
+            document.getElementById("suggestedHeading").innerHTML = s.items[0].snippet.localized.title;
+            document.getElementById("suggestedCat").innerHTML = getCategory(s);
+        });
     });
 }
 
+function getSuggestedId(category, type) {
+    let reverseType = (type == "Good") ? "Bad" : "Good",
+        suggestedCategoryExists = suggested.hasOwnProperty(category),
+        array = (suggestedCategoryExists) ? suggested[category][reverseType] : random[reverseType],
+        video = array[Math.floor(Math.random() * array.length)];
+    return (video == "") ? "NpEaa2P7qZI" : video;
+}
+
 function getCategory(video) {
-    let foodBool = video.items[0].snippet.tags.reduce((sum, curr) =>  sum || curr.toLowerCase().includes("food"), false);
+    let foodBool = video.items[0].snippet.tags.reduce((sum, curr) => sum || curr.toLowerCase().includes("food"), false);
     return (foodBool) ? "Food" : categories[parseInt(video.items[0].snippet.categoryId)];
+}
+
+const suggested = {
+    "Food": {
+        "Good": [""],
+        "Bad": ["GS_z6FG_jqE", "IOG4kiQTXUo", "Mdj711U31yU"]
+    },
+    "Music": {
+        "Good": [""],
+        "Bad": ["wzjWIxXBs_s", "l8Rofpq2_QY", "nMfPqeZjc2c", "ArwcHjmsw3A"]
+    },
+    "Pets & Animals": {
+        "Good": [""],
+        "Bad": ["2pEh9bZEtwA", "dU4CFTTCsIE", "2ILAkWciUnE"]
+    }
+}
+
+const random = {
+    "Good": [""],
+    "Bad": [""]
 }
 
 const categories = {
