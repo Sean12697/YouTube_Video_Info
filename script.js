@@ -4,7 +4,11 @@ let txtVideoId;
 window.addEventListener('DOMContentLoaded', () => {
     txtVideoId = document.getElementById("videoId");
     document.getElementById("btnSearch").addEventListener("click", () => printTags(txtVideoId.value, apiKey));
-    printTags("VA7BRqjwK98", apiKey);
+    document.getElementById("btnSearch").disabled = true;
+    document.getElementById("video").addEventListener("finished", () => {
+        document.getElementById("btnSearch").disabled = false;
+    } ,false);
+    // printTags("VA7BRqjwK98", apiKey);
 });
 
 async function getVideoData(videoId, apiKey) {
@@ -19,6 +23,7 @@ function printTags(videoId, apiKey) {
         // document.getElementById("video").src = `https://www.youtube.com/embed/${d.items[0].id}`;
         document.getElementById("heading").innerHTML = d.items[0].snippet.localized.title;
         document.getElementById("cat").innerHTML = getCategory(d);
+        godResponse(getCategory(d));
         // let tags = d.items[0].snippet.tags;
         // document.getElementById("result-div").innerHTML = `<p>${tags.reduce((sum, curr) => sum += curr + ", ", "")}</p>`;
         getVideoData(getSuggestedId(getCategory(d), "Good"), apiKey).then(s => {
@@ -29,6 +34,23 @@ function printTags(videoId, apiKey) {
             document.getElementById("suggestedCat").innerHTML = getCategory(s);
         });
     });
+}
+
+function godResponse(category) {
+    switch(category) {
+        case "Pets & Animals":
+            document.getElementById("video").src = "videos/res1-animals.mp4";
+            break;
+        case "Food":
+            document.getElementById("video").src = "videos/res1-food.mp4";
+            break;
+        case "Music":
+            document.getElementById("video").src = "videos/res1-music.mp4";
+            break;
+        default:
+            document.getElementById("video").src = "videos/res1-random1.mp4";
+            break;
+    }
 }
 
 function getSuggestedId(category, type) {
