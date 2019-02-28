@@ -31,7 +31,13 @@ img {
     width: 100%;
 }
 
-video {
+video .hide {
+    display: none;
+}
+
+video .show {
+    display: block;
+    margin: 0 auto;
     height: calc(100vh-20px);
 }
 
