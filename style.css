@@ -3,7 +3,6 @@ body {
     vertical-align: top;
     color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-image: url("face.png");
     background-repeat: no-repeat;
     background-position-x: center;
 }
@@ -21,6 +20,7 @@ input {
 
 video, img {
     width: 100%;
+    max-width: 600px;
 }
 
 #videoId, #btnSearch {
