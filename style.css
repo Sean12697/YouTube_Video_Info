@@ -7,6 +7,15 @@ body {
     background-position-x: center;
 }
 
+#elements {
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    text-align: center;
+}
+
 #cat {
     font-size: 1.2em;
 }
@@ -18,9 +27,12 @@ input {
     margin: 10px;
 }
 
-video, img {
+img {
     width: 100%;
-    max-width: 600px;
+}
+
+video {
+    height: calc(100vh-20px);
 }
 
 #videoId, #btnSearch {
